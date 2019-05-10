@@ -1,0 +1,4 @@
+NAME                                            STATUS   ROLES    AGE   VERSION
+ip-192-168-141-110.us-east-2.compute.internal   Ready    <none>   21h   v1.12.7
+ip-192-168-236-141.us-east-2.compute.internal   Ready    <none>   21h   v1.12.7
+ip-192-168-92-75.us-east-2.compute.internal     Ready    <none>   21h   v1.12.7
