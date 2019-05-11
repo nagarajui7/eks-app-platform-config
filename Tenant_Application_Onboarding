@@ -4,7 +4,7 @@
 #Module-----Only applicable for multi module java project
 #War_file_name-----Only for java based projec
 #Tenant-----Specify the Tenant name
-Repo_Name:cap
+Repo_Name:capdev
 Language:nodejs
 Type:nodejs
 Module:
