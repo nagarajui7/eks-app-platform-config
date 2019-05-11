@@ -1,3 +1,3 @@
-Tenant_Name:github-trigger-4
-Number_of_Micro_services:6
-Replicas:5
+Tenant_Name:cap-tenant
+Number_of_Micro_services:5
+Replicas:2
