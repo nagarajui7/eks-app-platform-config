@@ -1,12 +1,10 @@
 #Repo_Name-----Mention your repository name
 #Language-----select java/nodejs
 #Type------select tomcat/nodejs
-#Module-----Only applicable for multi module java project
 #War_file_name-----Only for java based projec
 #Tenant-----Specify the Tenant name
 Repo_Name:devcap
 Language:java
 Type:tomcat
-Module:devcap-java
 War_file_name:capcev
 Tenant:kube-system
