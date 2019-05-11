@@ -3,7 +3,7 @@
 #Type------select tomcat/nodejs
 #War_file_name-----Only for java based projec
 #Tenant-----Specify the Tenant name
-Repo_Name:CapDev2  
+Repo_Name:CapDev_node
 Language:nodejs
 Type:nodejs
 War_file_name:capDev
