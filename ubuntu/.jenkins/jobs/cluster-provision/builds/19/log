@@ -1,0 +1,157 @@
+Started by user [8mha:////4K5wFlcXmJC0DsPJ4mF2W0rBte8CK1/5fcgVP9EWRDhLAAAAlx+LCAAAAAAAAP9b85aBtbiIQTGjNKU4P08vOT+vOD8nVc83PyU1x6OyILUoJzMv2y+/JJUBAhiZGBgqihhk0NSjKDWzXb3RdlLBUSYGJk8GtpzUvPSSDB8G5tKinBIGIZ+sxLJE/ZzEvHT94JKizLx0a6BxUmjGOUNodHsLgAzWEgZu/dLi1CL9xJTczDwAj6GcLcAAAAA=[0madmin
+Building in workspace /home/ubuntu/.jenkins/workspace/cluster-provision
+[cluster-provision] $ /bin/sh -xe /tmp/jenkins8522095762220018949.sh
++ aws --version
+aws-cli/1.16.155 Python/3.6.7 Linux/4.15.0-1032-aws botocore/1.12.145
++ cd /home/ubuntu
++ ./cluster-setup.sh 1 eu-west-1 t2.small bharath
+aws-cli/1.16.155 Python/3.6.7 Linux/4.15.0-1032-aws botocore/1.12.145
+number of workers to be created 1
+region selected eu-west-1
+size of instance selected t2.small
+ami-08716b70cac884aaa
+inserting values in cfn template
+creating vpc and subnet
+{
+    "StackId": "arn:aws:cloudformation:eu-west-1:828164643967:stack/bharath/4bd71cc0-731f-11e9-8371-0254d350c81a"
+}
+displaying the subnets and vpc created
+vpc-0bbd6575953f984ea
+subnet-0755051e93c3ed2bd
+subnet-085c1dbdbf244132c
+subnet-034ee658980502035
+sg-0472e4a454ba66857
+create eks cluster
+{
+    "cluster": {
+        "name": "bharath",
+        "arn": "arn:aws:eks:eu-west-1:828164643967:cluster/bharath",
+        "createdAt": 1557491493.092,
+        "version": "1.12",
+        "roleArn": "arn:aws:iam::828164643967:role/eksCluster-cap",
+        "resourcesVpcConfig": {
+            "subnetIds": [
+                "subnet-0755051e93c3ed2bd",
+                "subnet-085c1dbdbf244132c",
+                "subnet-034ee658980502035"
+            ],
+            "securityGroupIds": [
+                "sg-0472e4a454ba66857"
+            ],
+            "vpcId": "vpc-0bbd6575953f984ea",
+            "endpointPublicAccess": true,
+            "endpointPrivateAccess": false
+        },
+        "logging": {
+            "clusterLogging": [
+                {
+                    "types": [
+                        "api",
+                        "audit",
+                        "authenticator",
+                        "controllerManager",
+                        "scheduler"
+                    ],
+                    "enabled": false
+                }
+            ]
+        },
+        "status": "CREATING",
+        "certificateAuthority": {},
+        "platformVersion": "eks.1"
+    }
+}
+cluster status
+"ACTIVE"
+Added new context arn:aws:eks:eu-west-1:828164643967:cluster/bharath to /home/ubuntu/.kube/config
+NAME         TYPE        CLUSTER-IP   EXTERNAL-IP   PORT(S)   AGE
+kubernetes   ClusterIP   10.100.0.1   <none>        443/TCP   2m24s
+create nodes for the cluster
+{
+    "StackId": "arn:aws:cloudformation:eu-west-1:828164643967:stack/bharath-nodes/11b76f20-7321-11e9-bac4-0295fc50fbd8"
+}
+{
+    "Stacks": [
+        {
+            "StackId": "arn:aws:cloudformation:eu-west-1:828164643967:stack/bharath-nodes/11b76f20-7321-11e9-bac4-0295fc50fbd8",
+            "StackName": "bharath-nodes",
+            "Description": "Amazon EKS - Node Group",
+            "Parameters": [
+                {
+                    "ParameterKey": "NodeGroupName",
+                    "ParameterValue": "bharath-nodes"
+                },
+                {
+                    "ParameterKey": "ClusterControlPlaneSecurityGroup",
+                    "ParameterValue": "sg-0472e4a454ba66857"
+                },
+                {
+                    "ParameterKey": "NodeAutoScalingGroupMinSize",
+                    "ParameterValue": "1"
+                },
+                {
+                    "ParameterKey": "NodeInstanceType",
+                    "ParameterValue": "t2.small"
+                },
+                {
+                    "ParameterKey": "NodeAutoScalingGroupMaxSize",
+                    "ParameterValue": "4"
+                },
+                {
+                    "ParameterKey": "KeyName",
+                    "ParameterValue": "cap-eu-west-1"
+                },
+                {
+                    "ParameterKey": "NodeImageId",
+                    "ParameterValue": "ami-08716b70cac884aaa"
+                },
+                {
+                    "ParameterKey": "Subnets",
+                    "ParameterValue": "subnet-0755051e93c3ed2bd,subnet-085c1dbdbf244132c,subnet-034ee658980502035"
+                },
+                {
+                    "ParameterKey": "NodeVolumeSize",
+                    "ParameterValue": "20"
+                },
+                {
+                    "ParameterKey": "VpcId",
+                    "ParameterValue": "vpc-0bbd6575953f984ea"
+                },
+                {
+                    "ParameterKey": "ClusterName",
+                    "ParameterValue": "bharath"
+                },
+                {
+                    "ParameterKey": "BootstrapArguments",
+                    "ParameterValue": ""
+                },
+                {
+                    "ParameterKey": "NodeAutoScalingGroupDesiredCapacity",
+                    "ParameterValue": "1"
+                }
+            ],
+            "CreationTime": "2019-05-10T12:42:28.042Z",
+            "RollbackConfiguration": {},
+            "StackStatus": "CREATE_IN_PROGRESS",
+            "DisableRollback": false,
+            "NotificationARNs": [],
+            "Capabilities": [
+                "CAPABILITY_IAM"
+            ],
+            "Tags": [],
+            "EnableTerminationProtection": false,
+            "DriftInformation": {
+                "StackDriftStatus": "NOT_CHECKED"
+            }
+        }
+    ]
+}
+adding workers to cluster
+arn:aws:iam::828164643967:role/bharath-nodes-NodeInstanceRole-EKIH6QZB5KLI
+Error from server (NotFound): error when deleting "aws-auth-cm.yaml": configmaps "aws-auth" not found
+configmap/aws-auth created
+NAME                                          STATUS     ROLES    AGE   VERSION
+ip-192-168-87-13.eu-west-1.compute.internal   NotReady   <none>   10s   v1.12.7
+Client Version: version.Info{Major:"1", Minor:"12", GitVersion:"v1.12.2", GitCommit:"17c77c7898218073f14c8d573582e8d2313dc740", GitTreeState:"clean", BuildDate:"2018-10-24T06:54:59Z", GoVersion:"go1.10.4", Compiler:"gc", Platform:"linux/amd64"}
+Server Version: version.Info{Major:"1", Minor:"12+", GitVersion:"v1.12.6-eks-d69f1b", GitCommit:"d69f1bf3669bf00b7f4a758e978e0e7a1e3a68f7", GitTreeState:"clean", BuildDate:"2019-02-28T20:26:10Z", GoVersion:"go1.10.8", Compiler:"gc", Platform:"linux/amd64"}
+Finished: SUCCESS

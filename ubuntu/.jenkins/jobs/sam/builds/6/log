@@ -1,0 +1,33 @@
+Started by user [8mha:////4K5wFlcXmJC0DsPJ4mF2W0rBte8CK1/5fcgVP9EWRDhLAAAAlx+LCAAAAAAAAP9b85aBtbiIQTGjNKU4P08vOT+vOD8nVc83PyU1x6OyILUoJzMv2y+/JJUBAhiZGBgqihhk0NSjKDWzXb3RdlLBUSYGJk8GtpzUvPSSDB8G5tKinBIGIZ+sxLJE/ZzEvHT94JKizLx0a6BxUmjGOUNodHsLgAzWEgZu/dLi1CL9xJTczDwAj6GcLcAAAAA=[0madmin
+Building in workspace /home/ubuntu/.jenkins/workspace/sam
+[sam] $ /bin/sh -xe /tmp/jenkins1359931615561580054.sh
++ pwd
+/home/ubuntu/.jenkins/workspace/sam
++ kubectl get ns
+NAME          STATUS   AGE
+bharath       Active   29m
+bharath1      Active   9m32s
+bharath11     Active   17m
+bharath12     Active   16m
+bharath13     Active   15m
+bharath15     Active   14m
+bharath2      Active   6m51s
+default       Active   11h
+kube-public   Active   11h
+kube-system   Active   11h
+kumar         Active   5m13s
++ df -h
+Filesystem      Size  Used Avail Use% Mounted on
+udev            481M     0  481M   0% /dev
+tmpfs            99M  736K   98M   1% /run
+/dev/xvda1      7.7G  2.2G  5.5G  29% /
+tmpfs           492M     0  492M   0% /dev/shm
+tmpfs           5.0M     0  5.0M   0% /run/lock
+tmpfs           492M     0  492M   0% /sys/fs/cgroup
+/dev/loop0       91M   91M     0 100% /snap/core/6350
+/dev/loop1       18M   18M     0 100% /snap/amazon-ssm-agent/930
+/dev/loop2       21M   21M     0 100% /snap/aws-cli/146
+tmpfs            99M     0   99M   0% /run/user/1000
+/dev/loop3       90M   90M     0 100% /snap/core/6818
+/dev/loop4       18M   18M     0 100% /snap/amazon-ssm-agent/1068
+Finished: SUCCESS

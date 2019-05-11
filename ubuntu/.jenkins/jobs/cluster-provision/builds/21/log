@@ -1,0 +1,185 @@
+Started by user [8mha:////4K5wFlcXmJC0DsPJ4mF2W0rBte8CK1/5fcgVP9EWRDhLAAAAlx+LCAAAAAAAAP9b85aBtbiIQTGjNKU4P08vOT+vOD8nVc83PyU1x6OyILUoJzMv2y+/JJUBAhiZGBgqihhk0NSjKDWzXb3RdlLBUSYGJk8GtpzUvPSSDB8G5tKinBIGIZ+sxLJE/ZzEvHT94JKizLx0a6BxUmjGOUNodHsLgAzWEgZu/dLi1CL9xJTczDwAj6GcLcAAAAA=[0madmin
+Building in workspace /home/ubuntu/.jenkins/workspace/cluster-provision
+[cluster-provision] $ /bin/bash /tmp/jenkins2073578316402668329.sh
+aws-cli/1.16.155 Python/3.6.7 Linux/4.15.0-1032-aws botocore/1.12.145
+aws-cli/1.16.155 Python/3.6.7 Linux/4.15.0-1032-aws botocore/1.12.145
+number of workers to be created 1
+region selected eu-west-1
+size of instance selected t2.small
+ami-08716b70cac884aaa
+inserting values in cfn template
+creating vpc and subnet
+{
+    "StackId": "arn:aws:cloudformation:eu-west-1:828164643967:stack/demo/c5cbb670-732f-11e9-961f-02de07166156"
+}
+displaying the subnets and vpc created
+vpc-0c40b236f94596d4a
+subnet-098bd06f037138986
+subnet-01d45b810a205e46d
+subnet-0563525246a838df3
+sg-0314ceaef8c7549bb
+create eks cluster
+{
+    "cluster": {
+        "name": "demo",
+        "arn": "arn:aws:eks:eu-west-1:828164643967:cluster/demo",
+        "createdAt": 1557498569.848,
+        "version": "1.12",
+        "roleArn": "arn:aws:iam::828164643967:role/eksCluster-cap",
+        "resourcesVpcConfig": {
+            "subnetIds": [
+                "subnet-098bd06f037138986",
+                "subnet-01d45b810a205e46d",
+                "subnet-0563525246a838df3"
+            ],
+            "securityGroupIds": [
+                "sg-0314ceaef8c7549bb"
+            ],
+            "vpcId": "vpc-0c40b236f94596d4a",
+            "endpointPublicAccess": true,
+            "endpointPrivateAccess": false
+        },
+        "logging": {
+            "clusterLogging": [
+                {
+                    "types": [
+                        "api",
+                        "audit",
+                        "authenticator",
+                        "controllerManager",
+                        "scheduler"
+                    ],
+                    "enabled": false
+                }
+            ]
+        },
+        "status": "CREATING",
+        "certificateAuthority": {},
+        "platformVersion": "eks.1"
+    }
+}
+cluster status
+"ACTIVE"
+Updated context arn:aws:eks:eu-west-1:828164643967:cluster/demo in /home/ubuntu/.kube/config
+NAME         TYPE        CLUSTER-IP   EXTERNAL-IP   PORT(S)   AGE
+kubernetes   ClusterIP   10.100.0.1   <none>        443/TCP   2m26s
+create nodes for the cluster
+{
+    "StackId": "arn:aws:cloudformation:eu-west-1:828164643967:stack/demo-nodes/8bbbc040-7331-11e9-8a6b-0a9c21152684"
+}
+{
+    "Stacks": [
+        {
+            "StackId": "arn:aws:cloudformation:eu-west-1:828164643967:stack/demo-nodes/8bbbc040-7331-11e9-8a6b-0a9c21152684",
+            "StackName": "demo-nodes",
+            "Description": "Amazon EKS - Node Group",
+            "Parameters": [
+                {
+                    "ParameterKey": "NodeGroupName",
+                    "ParameterValue": "demo-nodes"
+                },
+                {
+                    "ParameterKey": "ClusterControlPlaneSecurityGroup",
+                    "ParameterValue": "sg-0314ceaef8c7549bb"
+                },
+                {
+                    "ParameterKey": "NodeAutoScalingGroupMinSize",
+                    "ParameterValue": "1"
+                },
+                {
+                    "ParameterKey": "NodeInstanceType",
+                    "ParameterValue": "t2.small"
+                },
+                {
+                    "ParameterKey": "NodeAutoScalingGroupMaxSize",
+                    "ParameterValue": "4"
+                },
+                {
+                    "ParameterKey": "KeyName",
+                    "ParameterValue": "cap-eu-west-1"
+                },
+                {
+                    "ParameterKey": "NodeImageId",
+                    "ParameterValue": "ami-08716b70cac884aaa"
+                },
+                {
+                    "ParameterKey": "Subnets",
+                    "ParameterValue": "subnet-098bd06f037138986,subnet-01d45b810a205e46d,subnet-0563525246a838df3"
+                },
+                {
+                    "ParameterKey": "NodeVolumeSize",
+                    "ParameterValue": "20"
+                },
+                {
+                    "ParameterKey": "VpcId",
+                    "ParameterValue": "vpc-0c40b236f94596d4a"
+                },
+                {
+                    "ParameterKey": "ClusterName",
+                    "ParameterValue": "demo"
+                },
+                {
+                    "ParameterKey": "BootstrapArguments",
+                    "ParameterValue": ""
+                },
+                {
+                    "ParameterKey": "NodeAutoScalingGroupDesiredCapacity",
+                    "ParameterValue": "1"
+                }
+            ],
+            "CreationTime": "2019-05-10T14:40:24.701Z",
+            "RollbackConfiguration": {},
+            "StackStatus": "CREATE_IN_PROGRESS",
+            "DisableRollback": false,
+            "NotificationARNs": [],
+            "Capabilities": [
+                "CAPABILITY_IAM"
+            ],
+            "Tags": [],
+            "EnableTerminationProtection": false,
+            "DriftInformation": {
+                "StackDriftStatus": "NOT_CHECKED"
+            }
+        }
+    ]
+}
+adding workers to cluster
+arn:aws:iam::828164643967:role/demo-nodes-NodeInstanceRole-MGI7HY35CO0H
+Error from server (AlreadyExists): error when creating "aws-auth-cm.yaml": configmaps "aws-auth" already exists
+NAME                                            STATUS   ROLES    AGE   VERSION
+ip-192-168-141-110.us-east-2.compute.internal   Ready    <none>   21h   v1.12.7
+ip-192-168-236-141.us-east-2.compute.internal   Ready    <none>   21h   v1.12.7
+ip-192-168-92-75.us-east-2.compute.internal     Ready    <none>   21h   v1.12.7
+Client Version: version.Info{Major:"1", Minor:"12", GitVersion:"v1.12.2", GitCommit:"17c77c7898218073f14c8d573582e8d2313dc740", GitTreeState:"clean", BuildDate:"2018-10-24T06:54:59Z", GoVersion:"go1.10.4", Compiler:"gc", Platform:"linux/amd64"}
+Server Version: version.Info{Major:"1", Minor:"12+", GitVersion:"v1.12.6-eks-d69f1b", GitCommit:"d69f1bf3669bf00b7f4a758e978e0e7a1e3a68f7", GitTreeState:"clean", BuildDate:"2019-02-28T20:26:10Z", GoVersion:"go1.10.8", Compiler:"gc", Platform:"linux/amd64"}
+pushing to github
+Cloning into 'eks-app-platform-config'...
+On branch master
+Your branch is up to date with 'origin/master'.
+
+Changes to be committed:
+  (use "git reset HEAD <file>..." to unstage)
+
+	new file:   demo-eu-west-1/cluster_info.json
+	new file:   demo-eu-west-1/worker_nodes
+
+[master dd948d7] files
+ Committer: Ubuntu <ubuntu@ip-172-31-25-97.us-east-2.compute.internal>
+Your name and email address were configured automatically based
+on your username and hostname. Please check that they are accurate.
+You can suppress this message by setting them explicitly. Run the
+following command and follow the instructions in your editor to edit
+your configuration file:
+
+    git config --global --edit
+
+After doing this, you may fix the identity used for this commit with:
+
+    git commit --amend --reset-author
+
+ 2 files changed, 46 insertions(+)
+ create mode 100644 demo-eu-west-1/cluster_info.json
+ create mode 100644 demo-eu-west-1/worker_nodes
+To https://github.com/nagarajui7/eks-app-platform-config.git
+   760f4ec..dd948d7  master -> master
+Finished: SUCCESS

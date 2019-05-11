@@ -1,0 +1,11 @@
+commit 7e53bdaba6ccf4c989e36754e07133a9770bd256
+tree 071910bfd7cb664a730e908128598f37dc21889e
+parent bb0c3949dc472186a5f1e626b0052735d15dda3d
+author chbharathkumar <bharath.ch203@gmail.com> 2019-05-10 21:26:10 +0530
+committer GitHub <noreply@github.com> 2019-05-10 21:26:10 +0530
+
+    Update deploy_svc.yaml
+
+
+
+:100644 100644 fc9ee9a0a37bbf666aa3d3c8e8c61ab76c39863c 506c59e3479b0cf87fa12f8b189f82999a2c193f M	deploy_svc.yaml

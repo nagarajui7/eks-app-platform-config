@@ -1,0 +1,61 @@
+Started by user [8mha:////4K5wFlcXmJC0DsPJ4mF2W0rBte8CK1/5fcgVP9EWRDhLAAAAlx+LCAAAAAAAAP9b85aBtbiIQTGjNKU4P08vOT+vOD8nVc83PyU1x6OyILUoJzMv2y+/JJUBAhiZGBgqihhk0NSjKDWzXb3RdlLBUSYGJk8GtpzUvPSSDB8G5tKinBIGIZ+sxLJE/ZzEvHT94JKizLx0a6BxUmjGOUNodHsLgAzWEgZu/dLi1CL9xJTczDwAj6GcLcAAAAA=[0madmin
+Building in workspace /home/ubuntu/.jenkins/workspace/app_tenant_deploy_yaml
+using credential ef9e4802-7979-4c64-9c9b-d6c351f732ce
+ > git rev-parse --is-inside-work-tree # timeout=10
+Fetching changes from the remote Git repository
+ > git config remote.origin.url https://github.com/chbharathkumar/kubernetes-jenkins.git # timeout=10
+Fetching upstream changes from https://github.com/chbharathkumar/kubernetes-jenkins.git
+ > git --version # timeout=10
+using GIT_ASKPASS to set credentials 
+ > git fetch --tags --progress https://github.com/chbharathkumar/kubernetes-jenkins.git +refs/heads/*:refs/remotes/origin/*
+ > git rev-parse refs/remotes/origin/dev^{commit} # timeout=10
+ > git rev-parse refs/remotes/origin/origin/dev^{commit} # timeout=10
+Checking out Revision bb0c3949dc472186a5f1e626b0052735d15dda3d (refs/remotes/origin/dev)
+ > git config core.sparsecheckout # timeout=10
+ > git checkout -f bb0c3949dc472186a5f1e626b0052735d15dda3d
+Commit message: "Rename Dockerfile to tomcat/Dockerfile"
+ > git rev-list --no-walk bb0c3949dc472186a5f1e626b0052735d15dda3d # timeout=10
+[app_tenant_deploy_yaml] $ /bin/bash /tmp/jenkins8575555729622318565.sh
+first
+second
+cp: cannot stat '/tomcat/Dockerfile': No such file or directory
+ 3rd
+sed: can't read /home/ubuntu/sddafa/Dockerfile: No such file or directory
+sed: can't read /home/ubuntu/sddafa/Dockerfile: No such file or directory
+cat: /home/ubuntu/sddafa/Dockerfile: No such file or directory
+4th
+apiVersion: extensions/v1beta1
+kind: Deployment
+metadata:
+  name: app_tenant_deploy_sddafa
+  namespace: sade
+spec:
+  replicas: 1
+  template:
+    metadata:
+      labels:
+        name: sddafa
+    spec:
+      containers:
+      - name: app_tenant_pod_sddafa
+        image: sddafa:latest
+        ports:
+        - containerPort: 8079
+
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: app_tenant_svc_sddafa
+  labels:
+    name: app_tenant_sddafa
+  namespace: sade
+spec:
+  type: NodePort
+  ports:
+  - port: 80
+    targetPort: 8079
+    nodePort: 30001
+  selector:
+    name: sddafa
+Finished: SUCCESS

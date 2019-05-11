@@ -1,0 +1,42 @@
+Started by user [8mha:////4K5wFlcXmJC0DsPJ4mF2W0rBte8CK1/5fcgVP9EWRDhLAAAAlx+LCAAAAAAAAP9b85aBtbiIQTGjNKU4P08vOT+vOD8nVc83PyU1x6OyILUoJzMv2y+/JJUBAhiZGBgqihhk0NSjKDWzXb3RdlLBUSYGJk8GtpzUvPSSDB8G5tKinBIGIZ+sxLJE/ZzEvHT94JKizLx0a6BxUmjGOUNodHsLgAzWEgZu/dLi1CL9xJTczDwAj6GcLcAAAAA=[0madmin
+Building in workspace /home/ubuntu/.jenkins/workspace/cluster-provision
+[cluster-provision] $ /bin/sh -xe /tmp/jenkins5638802042290415002.sh
++ aws --version
+aws-cli/1.16.155 Python/3.6.7 Linux/4.15.0-1032-aws botocore/1.12.145
++ kubectl version
+Client Version: version.Info{Major:"1", Minor:"12", GitVersion:"v1.12.2", GitCommit:"17c77c7898218073f14c8d573582e8d2313dc740", GitTreeState:"clean", BuildDate:"2018-10-24T06:54:59Z", GoVersion:"go1.10.4", Compiler:"gc", Platform:"linux/amd64"}
+Server Version: version.Info{Major:"1", Minor:"12+", GitVersion:"v1.12.6-eks-d69f1b", GitCommit:"d69f1bf3669bf00b7f4a758e978e0e7a1e3a68f7", GitTreeState:"clean", BuildDate:"2019-02-28T20:26:10Z", GoVersion:"go1.10.8", Compiler:"gc", Platform:"linux/amd64"}
++ kubectl get nodes
+NAME                                            STATUS   ROLES    AGE   VERSION
+ip-192-168-141-110.us-east-2.compute.internal   Ready    <none>   9h    v1.12.7
+ip-192-168-236-141.us-east-2.compute.internal   Ready    <none>   9h    v1.12.7
+ip-192-168-92-75.us-east-2.compute.internal     Ready    <none>   9h    v1.12.7
++ cd /home/ubuntu
++ ./cluster-setup.sh 2 eu-central-1
+aws-cli/1.16.155 Python/3.6.7 Linux/4.15.0-1032-aws botocore/1.12.145
+number of workers to be created 2
+region selected eu-central-1
+./cluster-setup.sh: 11: [: eu-central-1: unexpected operator
+./cluster-setup.sh: 15: [: eu-central-1: unexpected operator
+./cluster-setup.sh: 19: [: eu-central-1: unexpected operator
+./cluster-setup.sh: 23: [: eu-central-1: unexpected operator
+wrong zone
+creating vpc and subnet
+{
+    "StackId": "arn:aws:cloudformation:eu-central-1:828164643967:stack/eks-Cap/cc4ccca0-72d0-11e9-8d53-0a4de0a8f3d8"
+}
+displaying the subnets and vpc created
+vpc-0e95bb4bebb1a32b3
+subnet-03e0664c2b47155c9
+subnet-070c0ed5bc2d774de
+subnet-0acee9272cc6590ca
+sg-0ab92d6d3b2d4673d
+create eks cluster
+
+An error occurred (InvalidParameterException) when calling the CreateCluster operation: The subnet ID 'subnet-0acee9272cc6590ca' does not exist (Service: AmazonEC2; Status Code: 400; Error Code: InvalidSubnetID.NotFound; Request ID: d184d6c5-cd27-4ed9-9ce5-4373065749d6)
+Terminated
+cluster status
+Terminated
+Build was aborted
+Aborted by [8mha:////4K5wFlcXmJC0DsPJ4mF2W0rBte8CK1/5fcgVP9EWRDhLAAAAlx+LCAAAAAAAAP9b85aBtbiIQTGjNKU4P08vOT+vOD8nVc83PyU1x6OyILUoJzMv2y+/JJUBAhiZGBgqihhk0NSjKDWzXb3RdlLBUSYGJk8GtpzUvPSSDB8G5tKinBIGIZ+sxLJE/ZzEvHT94JKizLx0a6BxUmjGOUNodHsLgAzWEgZu/dLi1CL9xJTczDwAj6GcLcAAAAA=[0madmin
+Finished: ABORTED

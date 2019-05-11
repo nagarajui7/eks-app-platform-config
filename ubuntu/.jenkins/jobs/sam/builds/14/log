@@ -1,0 +1,18 @@
+Started by user [8mha:////4K5wFlcXmJC0DsPJ4mF2W0rBte8CK1/5fcgVP9EWRDhLAAAAlx+LCAAAAAAAAP9b85aBtbiIQTGjNKU4P08vOT+vOD8nVc83PyU1x6OyILUoJzMv2y+/JJUBAhiZGBgqihhk0NSjKDWzXb3RdlLBUSYGJk8GtpzUvPSSDB8G5tKinBIGIZ+sxLJE/ZzEvHT94JKizLx0a6BxUmjGOUNodHsLgAzWEgZu/dLi1CL9xJTczDwAj6GcLcAAAAA=[0madmin
+Building in workspace /home/ubuntu/.jenkins/workspace/sam
+[sam] $ /bin/sh -xe /tmp/jenkins2327109915003223528.sh
++ pwd
+/home/ubuntu/.jenkins/workspace/sam
++ kubectl delete ns bharath15
+namespace "bharath15" deleted
++ kubectl get ns
+NAME          STATUS   AGE
+bha           Active   16h
+bharath       Active   27h
+bharath2      Active   26h
+default       Active   37h
+kube-public   Active   37h
+kube-system   Active   37h
+nagaraju      Active   15h
+tenant1       Active   21h
+Finished: SUCCESS

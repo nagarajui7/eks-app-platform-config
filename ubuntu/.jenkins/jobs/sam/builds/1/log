@@ -1,0 +1,42 @@
+Started by user [8mha:////4K5wFlcXmJC0DsPJ4mF2W0rBte8CK1/5fcgVP9EWRDhLAAAAlx+LCAAAAAAAAP9b85aBtbiIQTGjNKU4P08vOT+vOD8nVc83PyU1x6OyILUoJzMv2y+/JJUBAhiZGBgqihhk0NSjKDWzXb3RdlLBUSYGJk8GtpzUvPSSDB8G5tKinBIGIZ+sxLJE/ZzEvHT94JKizLx0a6BxUmjGOUNodHsLgAzWEgZu/dLi1CL9xJTczDwAj6GcLcAAAAA=[0madmin
+Building in workspace /home/ubuntu/.jenkins/workspace/sam
+using credential ef9e4802-7979-4c64-9c9b-d6c351f732ce
+Cloning the remote Git repository
+Cloning repository https://github.com/chbharathkumar/kubernetes-jenkins.git
+ > git init /home/ubuntu/.jenkins/workspace/sam # timeout=10
+Fetching upstream changes from https://github.com/chbharathkumar/kubernetes-jenkins.git
+ > git --version # timeout=10
+using GIT_ASKPASS to set credentials 
+ > git fetch --tags --progress https://github.com/chbharathkumar/kubernetes-jenkins.git +refs/heads/*:refs/remotes/origin/*
+ > git config remote.origin.url https://github.com/chbharathkumar/kubernetes-jenkins.git # timeout=10
+ > git config --add remote.origin.fetch +refs/heads/*:refs/remotes/origin/* # timeout=10
+ > git config remote.origin.url https://github.com/chbharathkumar/kubernetes-jenkins.git # timeout=10
+Fetching upstream changes from https://github.com/chbharathkumar/kubernetes-jenkins.git
+using GIT_ASKPASS to set credentials 
+ > git fetch --tags --progress https://github.com/chbharathkumar/kubernetes-jenkins.git +refs/heads/*:refs/remotes/origin/*
+ > git rev-parse refs/remotes/origin/master^{commit} # timeout=10
+ > git rev-parse refs/remotes/origin/origin/master^{commit} # timeout=10
+Checking out Revision 20bbd1f48335af7834baef5167473b026d28489a (refs/remotes/origin/master)
+ > git config core.sparsecheckout # timeout=10
+ > git checkout -f 20bbd1f48335af7834baef5167473b026d28489a
+Commit message: "Update Jenkinsfile"
+First time build. Skipping changelog.
+[sam] $ /bin/sh -xe /tmp/jenkins6544311999837592028.sh
++ pwd
+/home/ubuntu/.jenkins/workspace/sam
++ ls -ltr
+total 52
+-rw-rw-r-- 1 ubuntu ubuntu  824 May 10 01:22 user-permission.sh
+-rw-rw-r-- 1 ubuntu ubuntu  520 May 10 01:22 readiness-probe-jenkins.yml
+-rw-rw-r-- 1 ubuntu ubuntu  402 May 10 01:22 ns-resource-quota.yaml
+-rw-rw-r-- 1 ubuntu ubuntu  219 May 10 01:22 ns-resource-quota-def.yaml
+drwxrwxr-x 2 ubuntu ubuntu 4096 May 10 01:22 ns-resource-quota
+-rw-rw-r-- 1 ubuntu ubuntu  222 May 10 01:22 nginx-service.ym
+-rw-rw-r-- 1 ubuntu ubuntu  341 May 10 01:22 nginx-deployment.yml
+-rw-rw-r-- 1 ubuntu ubuntu  156 May 10 01:22 jenkins-service.yml
+-rw-rw-r-- 1 ubuntu ubuntu  663 May 10 01:22 jenkins-deployment.yml
+-rw-rw-r-- 1 ubuntu ubuntu  115 May 10 01:22 README.md
+-rw-rw-r-- 1 ubuntu ubuntu  374 May 10 01:22 Jenkinsfile
+-rw-rw-r-- 1 ubuntu ubuntu  395 May 10 01:22 Dockerfile
+drwxrwxr-x 2 ubuntu ubuntu 4096 May 10 01:22 Blue-Green-deployment
+Finished: SUCCESS

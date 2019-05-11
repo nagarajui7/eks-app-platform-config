@@ -1,0 +1,112 @@
+<?xml version='1.1' encoding='UTF-8'?>
+<project>
+  <actions/>
+  <description></description>
+  <keepDependencies>false</keepDependencies>
+  <properties>
+    <hudson.model.ParametersDefinitionProperty>
+      <parameterDefinitions>
+        <hudson.model.ChoiceParameterDefinition>
+          <name>region</name>
+          <description></description>
+          <choices class="java.util.Arrays$ArrayList">
+            <a class="string-array">
+              <string>eu-central-1</string>
+              <string>eu-west-1</string>
+              <string>us-east-2</string>
+              <string>us-east-1</string>
+            </a>
+          </choices>
+        </hudson.model.ChoiceParameterDefinition>
+        <hudson.model.StringParameterDefinition>
+          <name>workers</name>
+          <description></description>
+          <defaultValue></defaultValue>
+          <trim>false</trim>
+        </hudson.model.StringParameterDefinition>
+      </parameterDefinitions>
+    </hudson.model.ParametersDefinitionProperty>
+  </properties>
+  <scm class="hudson.scm.NullSCM"/>
+  <canRoam>true</canRoam>
+  <disabled>false</disabled>
+  <blockBuildWhenDownstreamBuilding>false</blockBuildWhenDownstreamBuilding>
+  <blockBuildWhenUpstreamBuilding>false</blockBuildWhenUpstreamBuilding>
+  <triggers/>
+  <concurrentBuild>false</concurrentBuild>
+  <builders>
+    <hudson.tasks.Shell>
+      <command>#!/bin/bash
+aws --version
+#aws ec2 describe-vpcs
+#aws ec2 describe-subnets
+#aws ec2 describe-security-groups
+echo &quot;number of workers to be created $workers&quot;
+echo &quot;region selected $cluster_region&quot;
+aws configure set region $cluster_region
+#bash image.sh $reg
+if [ $cluster_region == &quot;us-east-1&quot; ];
+then
+        image=ami-0abcb9f9190e867ab
+        echo $image
+elif [ $cluster_region == &quot;us-east-2&quot; ];
+then
+        image=ami-04ea7cb66af82ae4a
+        echo $image
+elif [ $cluster_region == &quot;eu-central-1&quot; ];
+then
+        image=ami-0d741ed58ca5b342e
+        echo $image
+elif [ $cluster_region == &quot;eu-west-1&quot; ];
+then
+        image=ami-08716b70cac884aaa
+        echo $image
+else
+        echo &quot;wrong zone&quot;
+fi
+
+sed -i &apos;115d&apos; /home/ubuntu/amazon-eks-nodegroup.yaml
+sed -i &quot;115i\\    Default: $workers&quot; /home/ubuntu/amazon-eks-nodegroup.yaml
+
+echo &quot;creating vpc and subnet&quot;
+aws cloudformation create-stack --stack-name eks-Cap --template-body file:///home/ubuntu/amazon-eks-vpc-sample.yaml --parameters ParameterKey=VpcBlock,ParameterValue=192.168.0.0/16 ParameterKey=Subnet01Block,ParameterValue=192.168.64.0/18 ParameterKey=Subnet02Block,ParameterValue=192.168.128.0/18 ParameterKey=Subnet03Block,ParameterValue=192.168.192.0/18
+sleep 100
+echo &quot;displaying the subnets and vpc created&quot;
+vpcvalue=`aws ec2 describe-vpcs --filters Name=tag:Name,Values=eks-Cap-VPC | grep &quot;VpcId&quot; | cut -d &quot;:&quot; -f2 | sed &apos;s/&quot;//g&apos; | sed &apos;s/,//g&apos; | sed &apos;s/ //g&apos;`
+subnet01value=`aws ec2 describe-subnets --filters Name=tag:Name,Values=eks-Cap-Subnet01 | grep &quot;SubnetId&quot; | cut -d &quot;:&quot; -f2 | sed &apos;s/&quot;//g&apos; | sed &apos;s/,//g&apos; | sed &apos;s/ //g&apos;`
+subnet02value=`aws ec2 describe-subnets --filters Name=tag:Name,Values=eks-Cap-Subnet02 | grep &quot;SubnetId&quot; | cut -d &quot;:&quot; -f2 | sed &apos;s/&quot;//g&apos; | sed &apos;s/,//g&apos; | sed &apos;s/ //g&apos;`
+subnet03value=`aws ec2 describe-subnets --filters Name=tag:Name,Values=eks-Cap-Subnet03 | grep &quot;SubnetId&quot; | cut -d &quot;:&quot; -f2 | sed &apos;s/&quot;//g&apos; | sed &apos;s/,//g&apos; | sed &apos;s/ //g&apos;`
+securitygrpvalue=`aws ec2 describe-security-groups --filters Name=tag:aws:cloudformation:stack-name,Values=eks-Cap | grep &quot;GroupId&quot; | cut -d &quot;:&quot; -f2 | sed &apos;s/&quot;//g&apos; | sed &apos;s/,//g&apos; | sed &apos;s/ //g&apos;`
+echo $vpcvalue
+echo $subnet01value
+echo $subnet02value
+echo $subnet03value
+echo $securitygrpvalue
+echo &quot;create eks cluster&quot;
+aws eks --region $reg create-cluster --name eks-Cap --role-arn arn:aws:iam::828164643967:role/eksCluster-cap --resources-vpc-config subnetIds=$subnet01value,$subnet02value,$subnet03value,securityGroupIds=$securitygrpvalue
+sleep 650
+echo &quot;cluster status&quot;
+aws eks --region $reg describe-cluster --name eks-Cap --query cluster.status
+aws eks --region $reg update-kubeconfig --name eks-Cap
+kubectl get svc
+echo &quot;create nodes for the cluster&quot;
+aws cloudformation create-stack --stack-name eks-Cap-nodes  --template-body file:///home/ubuntu/amazon-eks-nodegroup.yaml --parameters ParameterKey=ClusterName,ParameterValue=eks-Cap ParameterKey=ClusterControlPlaneSecurityGroup,ParameterValue=$securitygrpvalue ParameterKey=NodeGroupName,ParameterValue=eks-Cap-nodes ParameterKey=NodeAutoScalingGroupMinSize,ParameterValue=1 ParameterKey=NodeAutoScalingGroupDesiredCapacity,ParameterValue=$workers ParameterKey=NodeAutoScalingGroupMaxSize,ParameterValue=4 ParameterKey=NodeInstanceType,ParameterValue=t3.medium ParameterKey=NodeImageId,ParameterValue=$image ParameterKey=KeyName,ParameterValue=cap-$reg ParameterKey=VpcId,ParameterValue=$vpcvalue ParameterKey=Subnets,ParameterValue=\&quot;$subnet01value,$subnet02value,$subnet03value\&quot; --capabilities CAPABILITY_IAM
+aws cloudformation describe-stacks --stack-name eks-Cap-nodes
+sleep 200
+echo &quot;adding workers to cluster&quot;
+iam_role=`aws iam list-roles | grep eks-Cap-nodes | sed -n &apos;2p&apos; | cut -d &apos;&quot;&apos; -f4`
+echo $iam_role
+sed -i &apos;8d&apos;  aws-auth-cm.yaml
+sed -i &quot;8i\\    - rolearn: $iam_role&quot; aws-auth-cm.yaml
+kubectl delete -f aws-auth-cm.yaml
+kubectl create -f aws-auth-cm.yaml
+sleep 10s
+kubectl get nodes
+kubectl version
+
+</command>
+    </hudson.tasks.Shell>
+  </builders>
+  <publishers/>
+  <buildWrappers/>
+</project>

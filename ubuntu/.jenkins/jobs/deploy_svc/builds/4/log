@@ -1,0 +1,7 @@
+Started by user [8mha:////4K5wFlcXmJC0DsPJ4mF2W0rBte8CK1/5fcgVP9EWRDhLAAAAlx+LCAAAAAAAAP9b85aBtbiIQTGjNKU4P08vOT+vOD8nVc83PyU1x6OyILUoJzMv2y+/JJUBAhiZGBgqihhk0NSjKDWzXb3RdlLBUSYGJk8GtpzUvPSSDB8G5tKinBIGIZ+sxLJE/ZzEvHT94JKizLx0a6BxUmjGOUNodHsLgAzWEgZu/dLi1CL9xJTczDwAj6GcLcAAAAA=[0madmin
+Building in workspace /home/ubuntu/.jenkins/workspace/deploy_svc
+[deploy_svc] $ /bin/sh -xe /tmp/jenkins7517734687909442175.sh
++ cd /root
+/tmp/jenkins7517734687909442175.sh: 2: cd: can't cd to /root
+Build step 'Execute shell' marked build as failure
+Finished: FAILURE

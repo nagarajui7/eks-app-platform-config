@@ -1,0 +1,122 @@
+<?xml version='1.1' encoding='UTF-8'?>
+<project>
+  <actions/>
+  <description></description>
+  <keepDependencies>false</keepDependencies>
+  <properties>
+    <hudson.model.ParametersDefinitionProperty>
+      <parameterDefinitions>
+        <hudson.model.StringParameterDefinition>
+          <name>Repo_Name</name>
+          <description></description>
+          <defaultValue></defaultValue>
+          <trim>false</trim>
+        </hudson.model.StringParameterDefinition>
+        <hudson.model.ChoiceParameterDefinition>
+          <name>Type</name>
+          <description></description>
+          <choices class="java.util.Arrays$ArrayList">
+            <a class="string-array">
+              <string>tomcat</string>
+              <string>nodejs</string>
+            </a>
+          </choices>
+        </hudson.model.ChoiceParameterDefinition>
+        <hudson.model.StringParameterDefinition>
+          <name>Tenant</name>
+          <description></description>
+          <defaultValue></defaultValue>
+          <trim>false</trim>
+        </hudson.model.StringParameterDefinition>
+        <hudson.model.StringParameterDefinition>
+          <name>Module</name>
+          <description>Only applicable for multi module java project</description>
+          <defaultValue></defaultValue>
+          <trim>false</trim>
+        </hudson.model.StringParameterDefinition>
+        <hudson.model.StringParameterDefinition>
+          <name>War_file_name</name>
+          <description>Only for java based project</description>
+          <defaultValue></defaultValue>
+          <trim>false</trim>
+        </hudson.model.StringParameterDefinition>
+      </parameterDefinitions>
+    </hudson.model.ParametersDefinitionProperty>
+  </properties>
+  <scm class="hudson.plugins.git.GitSCM" plugin="git@3.10.0">
+    <configVersion>2</configVersion>
+    <userRemoteConfigs>
+      <hudson.plugins.git.UserRemoteConfig>
+        <url>https://github.com/chbharathkumar/kubernetes-jenkins.git</url>
+        <credentialsId>80b2c2e7-5a2b-4876-a4d4-56a74da002b1</credentialsId>
+      </hudson.plugins.git.UserRemoteConfig>
+    </userRemoteConfigs>
+    <branches>
+      <hudson.plugins.git.BranchSpec>
+        <name>*/dev</name>
+      </hudson.plugins.git.BranchSpec>
+    </branches>
+    <doGenerateSubmoduleConfigurations>false</doGenerateSubmoduleConfigurations>
+    <submoduleCfg class="list"/>
+    <extensions/>
+  </scm>
+  <canRoam>true</canRoam>
+  <disabled>false</disabled>
+  <blockBuildWhenDownstreamBuilding>false</blockBuildWhenDownstreamBuilding>
+  <blockBuildWhenUpstreamBuilding>false</blockBuildWhenUpstreamBuilding>
+  <triggers/>
+  <concurrentBuild>false</concurrentBuild>
+  <builders>
+    <hudson.tasks.Shell>
+      <command>#!/bin/bash
+
+mkdir $HOME/$Repo_Name_$Module
+echo $HOME
+
+#!/bin/bash
+if [[ $Type == &quot;tomcat&quot; ]];
+then
+
+cp tomcat/Dockerfile $HOME/$Repo_Name_$Module
+cp deploy_svc.yaml $HOME/$Repo_Name_$Module
+
+
+sed -i &quot;s/module/${Module}/g&quot; $HOME/$Repo_Name_$Module/Dockerfile
+sed -i &quot;s/repo.war/${War_file_name}.war/g&quot; $HOME/$Repo_Name_$Module/Dockerfile
+
+#cat $HOME/$Repo_Name/Dockerfile
+
+
+sed -i &quot;s/reponame/${Module}/g&quot; $HOME/$Repo_Name_$Module/deploy_svc.yaml
+sed -i &quot;s/namespace:.*/namespace: ${Tenant}/g&quot; $HOME/$Repo_Name_$Module/deploy_svc.yaml
+
+#cat $HOME/$Repo_Name/deploy_svc.yaml
+elif [[ $Type == &quot;nodejs&quot; ]];
+then
+
+cp node/Dockerfile $HOME/$Repo_Name_$Module
+cp deploy_svc.yaml $HOME/$Repo_Name_$Module
+
+sed -i &quot;s/module/${Repo_Name}/g&quot; $HOME/$Repo_Name_$Module/Dockerfile
+#cat $HOME/$Repo_Name/Dockerfile
+
+sed -i &quot;s/reponame/${Repo_Name}/g&quot; $HOME/$Repo_Name_$Module/deploy_svc.yaml
+sed -i &quot;s/namespace:.*/namespace: ${Tenant}/g&quot; $HOME/$Repo_Name_$Module/deploy_svc.yaml
+
+#cat $HOME/$Repo_Name/deploy_svc.yaml
+fi
+
+rm -rf $HOME/eks-app-platform-config
+cd $HOME
+git clone -b dev https://github.com/nagarajui7/eks-app-platform-config.git
+cd $HOME/eks-app-platform-config
+cp -R $HOME/$Repo_Name_$Module $HOME/eks-app-platform-config
+git add .
+git status
+git commit -m &quot;files&quot;
+git push https://nagaraju.batchu1%40gmail.com:N%40Ga%4012345@github.com/nagarajui7/eks-app-platform-config.git dev</command>
+    </hudson.tasks.Shell>
+  </builders>
+  <publishers/>
+  <buildWrappers/>
+</project>

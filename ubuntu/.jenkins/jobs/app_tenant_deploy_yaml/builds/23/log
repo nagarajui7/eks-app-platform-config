@@ -1,0 +1,97 @@
+Started by user [8mha:////4GvyPCy52t+fFIWC5Ekwbl6JWLHS7zF0ozr/PPzgRIAGAAAAlx+LCAAAAAAAAP9b85aBtbiIQTGjNKU4P08vOT+vOD8nVc83PyU1x6OyILUoJzMv2y+/JJUBAhiZGBgqihhk0NSjKDWzXb3RdlLBUSYGJk8GtpzUvPSSDB8G5tKinBIGIZ+sxLJE/ZzEvHT94JKizLx0a6BxUmjGOUNodHsLgAzWEgZu/dLi1CL9xJTczDwAj6GcLcAAAAA=[0madmin
+Building in workspace /home/ubuntu/.jenkins/workspace/app_tenant_deploy_yaml
+using credential 80b2c2e7-5a2b-4876-a4d4-56a74da002b1
+ > git rev-parse --is-inside-work-tree # timeout=10
+Fetching changes from the remote Git repository
+ > git config remote.origin.url https://github.com/chbharathkumar/kubernetes-jenkins.git # timeout=10
+Fetching upstream changes from https://github.com/chbharathkumar/kubernetes-jenkins.git
+ > git --version # timeout=10
+using GIT_ASKPASS to set credentials 
+ > git fetch --tags --progress https://github.com/chbharathkumar/kubernetes-jenkins.git +refs/heads/*:refs/remotes/origin/*
+ > git rev-parse refs/remotes/origin/dev^{commit} # timeout=10
+ > git rev-parse refs/remotes/origin/origin/dev^{commit} # timeout=10
+Checking out Revision 0ce1133476ddb10c768679f32e7959552eed8191 (refs/remotes/origin/dev)
+ > git config core.sparsecheckout # timeout=10
+ > git checkout -f 0ce1133476ddb10c768679f32e7959552eed8191
+Commit message: "Update Dockerfile"
+ > git rev-list --no-walk d1db6a223ef93206b0e887b1602698b916f764a1 # timeout=10
+[app_tenant_deploy_yaml] $ /bin/bash /tmp/jenkins101318298497764352.sh
+/home/ubuntu
+FROM node:8
+
+# Create app directory
+WORKDIR /usr/src/app
+
+COPY myrepo/package*.json ./
+
+RUN npm install -g
+
+# Bundle app source
+COPY myrepo/* .
+
+EXPOSE 8080
+CMD [ "npm", "start" ]
+apiVersion: extensions/v1beta1
+kind: Deployment
+metadata:
+  name: app_tenant_deploy_myrepo
+  namespace: myname
+spec:
+  replicas: 1
+  template:
+    metadata:
+      labels:
+        name: myrepo
+    spec:
+      containers:
+      - name: app_tenant_pod_myrepo
+        image: myrepo:latest
+        ports:
+        - containerPort: 8080
+
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: app_tenant_svc_myrepo
+  labels:
+    name: app_tenant_myrepo
+  namespace: myname
+spec:
+  type: NodePort
+  ports:
+  - port: 80
+    targetPort: 8080
+    nodePort: 30001
+  selector:
+    name: myrepo
+Cloning into 'eks-app-platform-config'...
+On branch dev
+Your branch is up to date with 'origin/dev'.
+
+Changes to be committed:
+  (use "git reset HEAD <file>..." to unstage)
+
+	new file:   myrepo/Dockerfile
+	new file:   myrepo/deploy_svc.yaml
+
+[dev 92be11e] files
+ Committer: Ubuntu <ubuntu@ip-172-31-32-179.us-east-2.compute.internal>
+Your name and email address were configured automatically based
+on your username and hostname. Please check that they are accurate.
+You can suppress this message by setting them explicitly. Run the
+following command and follow the instructions in your editor to edit
+your configuration file:
+
+    git config --global --edit
+
+After doing this, you may fix the identity used for this commit with:
+
+    git commit --amend --reset-author
+
+ 2 files changed, 48 insertions(+)
+ create mode 100644 myrepo/Dockerfile
+ create mode 100644 myrepo/deploy_svc.yaml
+To https://github.com/nagarajui7/eks-app-platform-config.git
+   74ea90f..92be11e  dev -> dev
+Finished: SUCCESS

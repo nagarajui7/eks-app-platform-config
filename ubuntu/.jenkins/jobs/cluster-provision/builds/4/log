@@ -1,0 +1,166 @@
+Started by user [8mha:////4K5wFlcXmJC0DsPJ4mF2W0rBte8CK1/5fcgVP9EWRDhLAAAAlx+LCAAAAAAAAP9b85aBtbiIQTGjNKU4P08vOT+vOD8nVc83PyU1x6OyILUoJzMv2y+/JJUBAhiZGBgqihhk0NSjKDWzXb3RdlLBUSYGJk8GtpzUvPSSDB8G5tKinBIGIZ+sxLJE/ZzEvHT94JKizLx0a6BxUmjGOUNodHsLgAzWEgZu/dLi1CL9xJTczDwAj6GcLcAAAAA=[0madmin
+Building in workspace /home/ubuntu/.jenkins/workspace/cluster-provision
+[cluster-provision] $ /bin/sh -xe /tmp/jenkins5671066596348600954.sh
++ aws --version
+aws-cli/1.16.155 Python/3.6.7 Linux/4.15.0-1032-aws botocore/1.12.145
++ kubectl version
+Client Version: version.Info{Major:"1", Minor:"12", GitVersion:"v1.12.2", GitCommit:"17c77c7898218073f14c8d573582e8d2313dc740", GitTreeState:"clean", BuildDate:"2018-10-24T06:54:59Z", GoVersion:"go1.10.4", Compiler:"gc", Platform:"linux/amd64"}
+Server Version: version.Info{Major:"1", Minor:"12+", GitVersion:"v1.12.6-eks-d69f1b", GitCommit:"d69f1bf3669bf00b7f4a758e978e0e7a1e3a68f7", GitTreeState:"clean", BuildDate:"2019-02-28T20:26:10Z", GoVersion:"go1.10.8", Compiler:"gc", Platform:"linux/amd64"}
++ kubectl get nodes
+NAME                                            STATUS   ROLES    AGE   VERSION
+ip-192-168-141-110.us-east-2.compute.internal   Ready    <none>   10h   v1.12.7
+ip-192-168-236-141.us-east-2.compute.internal   Ready    <none>   10h   v1.12.7
+ip-192-168-92-75.us-east-2.compute.internal     Ready    <none>   10h   v1.12.7
++ cd /home/ubuntu
++ ./cluster-setup.sh 2 eu-west-1
+aws-cli/1.16.155 Python/3.6.7 Linux/4.15.0-1032-aws botocore/1.12.145
+number of workers to be created 2
+region selected eu-west-1
+./cluster-setup.sh: 11: [: eu-west-1: unexpected operator
+./cluster-setup.sh: 15: [: eu-west-1: unexpected operator
+./cluster-setup.sh: 19: [: eu-west-1: unexpected operator
+./cluster-setup.sh: 23: [: eu-west-1: unexpected operator
+wrong zone
+creating vpc and subnet
+{
+    "StackId": "arn:aws:cloudformation:eu-west-1:828164643967:stack/eks-Cap/a3382630-72d4-11e9-b69b-024e38e0666a"
+}
+displaying the subnets and vpc created
+vpc-0ffe73243065b4220
+subnet-0c3fd34c7d747b7a5
+subnet-0cb51b864d2b626e1
+subnet-0cbf36febc5b8711a
+sg-0fed77469efff890d
+create eks cluster
+{
+    "cluster": {
+        "name": "eks-Cap",
+        "arn": "arn:aws:eks:eu-west-1:828164643967:cluster/eks-Cap",
+        "createdAt": 1557459427.555,
+        "version": "1.12",
+        "roleArn": "arn:aws:iam::828164643967:role/eksCluster-cap",
+        "resourcesVpcConfig": {
+            "subnetIds": [
+                "subnet-0c3fd34c7d747b7a5",
+                "subnet-0cb51b864d2b626e1",
+                "subnet-0cbf36febc5b8711a"
+            ],
+            "securityGroupIds": [
+                "sg-0fed77469efff890d"
+            ],
+            "vpcId": "vpc-0ffe73243065b4220",
+            "endpointPublicAccess": true,
+            "endpointPrivateAccess": false
+        },
+        "logging": {
+            "clusterLogging": [
+                {
+                    "types": [
+                        "api",
+                        "audit",
+                        "authenticator",
+                        "controllerManager",
+                        "scheduler"
+                    ],
+                    "enabled": false
+                }
+            ]
+        },
+        "status": "CREATING",
+        "certificateAuthority": {},
+        "platformVersion": "eks.1"
+    }
+}
+cluster status
+"CREATING"
+
+Cluster status not active
+NAME         TYPE        CLUSTER-IP   EXTERNAL-IP   PORT(S)   AGE
+kubernetes   ClusterIP   10.100.0.1   <none>        443/TCP   12h
+create nodes for the cluster
+{
+    "StackId": "arn:aws:cloudformation:eu-west-1:828164643967:stack/eks-Cap-nodes/688c3e20-72d6-11e9-956b-068bfa33c7ce"
+}
+{
+    "Stacks": [
+        {
+            "StackId": "arn:aws:cloudformation:eu-west-1:828164643967:stack/eks-Cap-nodes/688c3e20-72d6-11e9-956b-068bfa33c7ce",
+            "StackName": "eks-Cap-nodes",
+            "Description": "Amazon EKS - Node Group",
+            "Parameters": [
+                {
+                    "ParameterKey": "NodeGroupName",
+                    "ParameterValue": "eks-Cap-nodes"
+                },
+                {
+                    "ParameterKey": "ClusterControlPlaneSecurityGroup",
+                    "ParameterValue": "sg-0fed77469efff890d"
+                },
+                {
+                    "ParameterKey": "NodeAutoScalingGroupMinSize",
+                    "ParameterValue": "1"
+                },
+                {
+                    "ParameterKey": "NodeInstanceType",
+                    "ParameterValue": "t3.medium"
+                },
+                {
+                    "ParameterKey": "NodeAutoScalingGroupMaxSize",
+                    "ParameterValue": "4"
+                },
+                {
+                    "ParameterKey": "KeyName",
+                    "ParameterValue": "cap-eu-west-1"
+                },
+                {
+                    "ParameterKey": "NodeImageId",
+                    "ParameterValue": ""
+                },
+                {
+                    "ParameterKey": "Subnets",
+                    "ParameterValue": "subnet-0c3fd34c7d747b7a5,subnet-0cb51b864d2b626e1,subnet-0cbf36febc5b8711a"
+                },
+                {
+                    "ParameterKey": "NodeVolumeSize",
+                    "ParameterValue": "20"
+                },
+                {
+                    "ParameterKey": "VpcId",
+                    "ParameterValue": "vpc-0ffe73243065b4220"
+                },
+                {
+                    "ParameterKey": "ClusterName",
+                    "ParameterValue": "eks-Cap"
+                },
+                {
+                    "ParameterKey": "BootstrapArguments",
+                    "ParameterValue": ""
+                },
+                {
+                    "ParameterKey": "NodeAutoScalingGroupDesiredCapacity",
+                    "ParameterValue": "2"
+                }
+            ],
+            "CreationTime": "2019-05-10T03:48:01.502Z",
+            "RollbackConfiguration": {},
+            "StackStatus": "CREATE_IN_PROGRESS",
+            "StackStatusReason": "User Initiated",
+            "DisableRollback": false,
+            "NotificationARNs": [],
+            "Capabilities": [
+                "CAPABILITY_IAM"
+            ],
+            "Tags": [],
+            "EnableTerminationProtection": false,
+            "DriftInformation": {
+                "StackDriftStatus": "NOT_CHECKED"
+            }
+        }
+    ]
+}
+Terminated
+adding workers to cluster
+Terminated
+Build was aborted
+Aborted by [8mha:////4K5wFlcXmJC0DsPJ4mF2W0rBte8CK1/5fcgVP9EWRDhLAAAAlx+LCAAAAAAAAP9b85aBtbiIQTGjNKU4P08vOT+vOD8nVc83PyU1x6OyILUoJzMv2y+/JJUBAhiZGBgqihhk0NSjKDWzXb3RdlLBUSYGJk8GtpzUvPSSDB8G5tKinBIGIZ+sxLJE/ZzEvHT94JKizLx0a6BxUmjGOUNodHsLgAzWEgZu/dLi1CL9xJTczDwAj6GcLcAAAAA=[0madmin
+Finished: ABORTED

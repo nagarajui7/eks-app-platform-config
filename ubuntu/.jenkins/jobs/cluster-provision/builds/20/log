@@ -1,0 +1,184 @@
+Started by user [8mha:////4K5wFlcXmJC0DsPJ4mF2W0rBte8CK1/5fcgVP9EWRDhLAAAAlx+LCAAAAAAAAP9b85aBtbiIQTGjNKU4P08vOT+vOD8nVc83PyU1x6OyILUoJzMv2y+/JJUBAhiZGBgqihhk0NSjKDWzXb3RdlLBUSYGJk8GtpzUvPSSDB8G5tKinBIGIZ+sxLJE/ZzEvHT94JKizLx0a6BxUmjGOUNodHsLgAzWEgZu/dLi1CL9xJTczDwAj6GcLcAAAAA=[0madmin
+Building in workspace /home/ubuntu/.jenkins/workspace/cluster-provision
+[cluster-provision] $ /bin/bash /tmp/jenkins5740175850876412070.sh
+aws-cli/1.16.155 Python/3.6.7 Linux/4.15.0-1032-aws botocore/1.12.145
+aws-cli/1.16.155 Python/3.6.7 Linux/4.15.0-1032-aws botocore/1.12.145
+number of workers to be created 2
+region selected eu-west-1
+size of instance selected t2.small
+ami-08716b70cac884aaa
+inserting values in cfn template
+creating vpc and subnet
+{
+    "StackId": "arn:aws:cloudformation:eu-west-1:828164643967:stack/final/e31db8a0-7329-11e9-8217-028618ba0c7c"
+}
+displaying the subnets and vpc created
+vpc-0acb7fb2dcb25977e
+subnet-07c8da15e7af47f7a
+subnet-04fb61bffd53c9737
+subnet-019f6c62f59f4b75b
+sg-08fdb1c1a2724175c
+create eks cluster
+{
+    "cluster": {
+        "name": "final",
+        "arn": "arn:aws:eks:eu-west-1:828164643967:cluster/final",
+        "createdAt": 1557496041.877,
+        "version": "1.12",
+        "roleArn": "arn:aws:iam::828164643967:role/eksCluster-cap",
+        "resourcesVpcConfig": {
+            "subnetIds": [
+                "subnet-07c8da15e7af47f7a",
+                "subnet-04fb61bffd53c9737",
+                "subnet-019f6c62f59f4b75b"
+            ],
+            "securityGroupIds": [
+                "sg-08fdb1c1a2724175c"
+            ],
+            "vpcId": "vpc-0acb7fb2dcb25977e",
+            "endpointPublicAccess": true,
+            "endpointPrivateAccess": false
+        },
+        "logging": {
+            "clusterLogging": [
+                {
+                    "types": [
+                        "api",
+                        "audit",
+                        "authenticator",
+                        "controllerManager",
+                        "scheduler"
+                    ],
+                    "enabled": false
+                }
+            ]
+        },
+        "status": "CREATING",
+        "certificateAuthority": {},
+        "platformVersion": "eks.1"
+    }
+}
+cluster status
+"ACTIVE"
+Added new context arn:aws:eks:eu-west-1:828164643967:cluster/final to /home/ubuntu/.kube/config
+NAME         TYPE        CLUSTER-IP   EXTERNAL-IP   PORT(S)   AGE
+kubernetes   ClusterIP   10.100.0.1   <none>        443/TCP   3m3s
+create nodes for the cluster
+{
+    "StackId": "arn:aws:cloudformation:eu-west-1:828164643967:stack/final-nodes/a94462d0-732b-11e9-b5c6-0a678be70e04"
+}
+{
+    "Stacks": [
+        {
+            "StackId": "arn:aws:cloudformation:eu-west-1:828164643967:stack/final-nodes/a94462d0-732b-11e9-b5c6-0a678be70e04",
+            "StackName": "final-nodes",
+            "Description": "Amazon EKS - Node Group",
+            "Parameters": [
+                {
+                    "ParameterKey": "NodeGroupName",
+                    "ParameterValue": "final-nodes"
+                },
+                {
+                    "ParameterKey": "ClusterControlPlaneSecurityGroup",
+                    "ParameterValue": "sg-08fdb1c1a2724175c"
+                },
+                {
+                    "ParameterKey": "NodeAutoScalingGroupMinSize",
+                    "ParameterValue": "1"
+                },
+                {
+                    "ParameterKey": "NodeInstanceType",
+                    "ParameterValue": "t2.small"
+                },
+                {
+                    "ParameterKey": "NodeAutoScalingGroupMaxSize",
+                    "ParameterValue": "4"
+                },
+                {
+                    "ParameterKey": "KeyName",
+                    "ParameterValue": "cap-eu-west-1"
+                },
+                {
+                    "ParameterKey": "NodeImageId",
+                    "ParameterValue": "ami-08716b70cac884aaa"
+                },
+                {
+                    "ParameterKey": "Subnets",
+                    "ParameterValue": "subnet-07c8da15e7af47f7a,subnet-04fb61bffd53c9737,subnet-019f6c62f59f4b75b"
+                },
+                {
+                    "ParameterKey": "NodeVolumeSize",
+                    "ParameterValue": "20"
+                },
+                {
+                    "ParameterKey": "VpcId",
+                    "ParameterValue": "vpc-0acb7fb2dcb25977e"
+                },
+                {
+                    "ParameterKey": "ClusterName",
+                    "ParameterValue": "final"
+                },
+                {
+                    "ParameterKey": "BootstrapArguments",
+                    "ParameterValue": ""
+                },
+                {
+                    "ParameterKey": "NodeAutoScalingGroupDesiredCapacity",
+                    "ParameterValue": "2"
+                }
+            ],
+            "CreationTime": "2019-05-10T13:58:17.279Z",
+            "RollbackConfiguration": {},
+            "StackStatus": "CREATE_IN_PROGRESS",
+            "StackStatusReason": "User Initiated",
+            "DisableRollback": false,
+            "NotificationARNs": [],
+            "Capabilities": [
+                "CAPABILITY_IAM"
+            ],
+            "Tags": [],
+            "EnableTerminationProtection": false,
+            "DriftInformation": {
+                "StackDriftStatus": "NOT_CHECKED"
+            }
+        }
+    ]
+}
+adding workers to cluster
+arn:aws:iam::828164643967:role/eks-Cap-nodes-NodeInstanceRole-FP02U9610QC1
+configmap/aws-auth created
+No resources found.
+Client Version: version.Info{Major:"1", Minor:"12", GitVersion:"v1.12.2", GitCommit:"17c77c7898218073f14c8d573582e8d2313dc740", GitTreeState:"clean", BuildDate:"2018-10-24T06:54:59Z", GoVersion:"go1.10.4", Compiler:"gc", Platform:"linux/amd64"}
+Server Version: version.Info{Major:"1", Minor:"12+", GitVersion:"v1.12.6-eks-d69f1b", GitCommit:"d69f1bf3669bf00b7f4a758e978e0e7a1e3a68f7", GitTreeState:"clean", BuildDate:"2019-02-28T20:26:10Z", GoVersion:"go1.10.8", Compiler:"gc", Platform:"linux/amd64"}
+pushing to github
+Cloning into 'eks-app-platform-config'...
+No resources found.
+On branch master
+Your branch is up to date with 'origin/master'.
+
+Changes to be committed:
+  (use "git reset HEAD <file>..." to unstage)
+
+	new file:   final-eu-west-1/cluster_info.json
+	new file:   final-eu-west-1/worker_nodes
+
+[master 760f4ec] files
+ Committer: Ubuntu <ubuntu@ip-172-31-25-97.us-east-2.compute.internal>
+Your name and email address were configured automatically based
+on your username and hostname. Please check that they are accurate.
+You can suppress this message by setting them explicitly. Run the
+following command and follow the instructions in your editor to edit
+your configuration file:
+
+    git config --global --edit
+
+After doing this, you may fix the identity used for this commit with:
+
+    git commit --amend --reset-author
+
+ 2 files changed, 42 insertions(+)
+ create mode 100644 final-eu-west-1/cluster_info.json
+ create mode 100644 final-eu-west-1/worker_nodes
+To https://github.com/nagarajui7/eks-app-platform-config.git
+   aa56648..760f4ec  master -> master
+Finished: SUCCESS
