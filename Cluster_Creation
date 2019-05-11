@@ -4,3 +4,5 @@ Cluster_Name:capdev
 Number_of_Workers:3
 AWS_Region:eu-west-1
 Instance_Size:t2.small
+
+
