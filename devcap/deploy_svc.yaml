@@ -1,18 +1,18 @@
 apiVersion: extensions/v1beta1
 kind: Deployment
 metadata:
-  name: app_tenant_deploy_devcap-java
+  name: app_tenant_deploy_devcap
   namespace: kube-system
 spec:
   replicas: 1
   template:
     metadata:
       labels:
-        name: devcap-java
+        name: devcap
     spec:
       containers:
-      - name: app_tenant_pod_devcap-java
-        image: devcap-java:latest
+      - name: app_tenant_pod_devcap
+        image: devcap:latest
         ports:
         - containerPort: 8080
 
@@ -20,9 +20,9 @@ spec:
 apiVersion: v1
 kind: Service
 metadata:
-  name: app_tenant_svc_devcap-java
+  name: app_tenant_svc_devcap
   labels:
-    name: app_tenant_devcap-java
+    name: app_tenant_devcap
   namespace: kube-system
 spec:
   type: NodePort
@@ -31,4 +31,4 @@ spec:
     targetPort: 8080
     nodePort: 30001
   selector:
-    name: devcap-java
+    name: devcap
