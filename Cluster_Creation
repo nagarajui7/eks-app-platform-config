@@ -1,8 +1,8 @@
 #Regions available: eu-west-1, eu-central-1
 #Size available: t2.small, t2.large, t2.xlarge, t3.small, t3.medium, t3.xlarge, m3.medium, m3.large, m3.xlarge
-Cluster_Name:cap-dev
-Number_of_Workers:1
-AWS_Region:eu-west-1
+Cluster_Name:capdev
+Number_of_Workers:2
+AWS_Region:eu-central-1
 Instance_Size:t2.small
 
 
