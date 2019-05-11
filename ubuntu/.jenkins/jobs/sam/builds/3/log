@@ -1,9 +1,0 @@
-Started by user [8mha:////4K5wFlcXmJC0DsPJ4mF2W0rBte8CK1/5fcgVP9EWRDhLAAAAlx+LCAAAAAAAAP9b85aBtbiIQTGjNKU4P08vOT+vOD8nVc83PyU1x6OyILUoJzMv2y+/JJUBAhiZGBgqihhk0NSjKDWzXb3RdlLBUSYGJk8GtpzUvPSSDB8G5tKinBIGIZ+sxLJE/ZzEvHT94JKizLx0a6BxUmjGOUNodHsLgAzWEgZu/dLi1CL9xJTczDwAj6GcLcAAAAA=[0madmin
-Building in workspace /home/ubuntu/.jenkins/workspace/sam
-[sam] $ /bin/sh -xe /tmp/jenkins6765408368833490576.sh
-+ pwd
-/home/ubuntu/.jenkins/workspace/sam
-+ kubectl delete ns bharath2
-Error from server (NotFound): namespaces "bharath2" not found
-Build step 'Execute shell' marked build as failure
-Finished: FAILURE

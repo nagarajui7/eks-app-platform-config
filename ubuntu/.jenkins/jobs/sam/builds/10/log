@@ -1,9 +1,0 @@
-Started by user [8mha:////4K5wFlcXmJC0DsPJ4mF2W0rBte8CK1/5fcgVP9EWRDhLAAAAlx+LCAAAAAAAAP9b85aBtbiIQTGjNKU4P08vOT+vOD8nVc83PyU1x6OyILUoJzMv2y+/JJUBAhiZGBgqihhk0NSjKDWzXb3RdlLBUSYGJk8GtpzUvPSSDB8G5tKinBIGIZ+sxLJE/ZzEvHT94JKizLx0a6BxUmjGOUNodHsLgAzWEgZu/dLi1CL9xJTczDwAj6GcLcAAAAA=[0madmin
-Building in workspace /home/ubuntu/.jenkins/workspace/sam
-[sam] $ /bin/sh -xe /tmp/jenkins4945257441059382521.sh
-+ pwd
-/home/ubuntu/.jenkins/workspace/sam
-+ kubectl delete ns bharath11
-Unable to connect to the server: dial tcp: lookup C4484A87CB1E011FEA95583AEA6D560E.yl4.eu-central-1.eks.amazonaws.com on 127.0.0.53:53: no such host
-Build step 'Execute shell' marked build as failure
-Finished: FAILURE
