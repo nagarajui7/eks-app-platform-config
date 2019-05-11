@@ -1,1 +1,3 @@
-rest
+Tenant_Name:github-trigger
+Number_of_Micro_services:4
+Replicas:2
