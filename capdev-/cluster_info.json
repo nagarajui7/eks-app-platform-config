@@ -1,0 +1,42 @@
+{
+    "cluster": {
+        "name": "capdev",
+        "arn": "arn:aws:eks:eu-central-1:828164643967:cluster/capdev",
+        "createdAt": 1557598901.603,
+        "version": "1.12",
+        "endpoint": "https://A6DDD5703F8230A4834171E99A7D9A75.sk1.eu-central-1.eks.amazonaws.com",
+        "roleArn": "arn:aws:iam::828164643967:role/eksCluster-cap",
+        "resourcesVpcConfig": {
+            "subnetIds": [
+                "subnet-0eda7817d6f1d6d7b",
+                "subnet-09b2a2557ecfb8ed4",
+                "subnet-018d8e531fd27728c"
+            ],
+            "securityGroupIds": [
+                "sg-0be8bc389bf5dfc45"
+            ],
+            "vpcId": "vpc-0ef13b5cd6b14a266",
+            "endpointPublicAccess": true,
+            "endpointPrivateAccess": false
+        },
+        "logging": {
+            "clusterLogging": [
+                {
+                    "types": [
+                        "api",
+                        "audit",
+                        "authenticator",
+                        "controllerManager",
+                        "scheduler"
+                    ],
+                    "enabled": false
+                }
+            ]
+        },
+        "status": "ACTIVE",
+        "certificateAuthority": {
+            "data": "LS0tLS1CRUdJTiBDRVJUSUZJQ0FURS0tLS0tCk1JSUN5RENDQWJDZ0F3SUJBZ0lCQURBTkJna3Foa2lHOXcwQkFRc0ZBREFWTVJNd0VRWURWUVFERXdwcmRXSmwKY201bGRHVnpNQjRYRFRFNU1EVXhNVEU0TWpneE9Gb1hEVEk1TURVd09ERTRNamd4T0Zvd0ZURVRNQkVHQTFVRQpBeE1LYTNWaVpYSnVaWFJsY3pDQ0FTSXdEUVlKS29aSWh2Y05BUUVCQlFBRGdnRVBBRENDQVFvQ2dnRUJBTXlQCitFdDRtWjgyRlYrVEFseVdJM1lBa2txamRzWlZ3eDljUkhwSzRYOFlSOW9MeGhRM1ZNNzhxdlVmR1kwZmczbmkKYjYvS1FlSGN6dVdtMnZlVHluVVd3MzVUczg4NUFoSFJqOC83aThGL2toclFYWHZFTXFQQXVtbSs0OWtzaXlDTgozZjJkSU5mRkcybXcraVZtWkFnZ2RnQlQvUzZTa2xKWXlKQktQcHhHNURUWDNmMm1BOHZMcHpNSDVpNXF3Zkx0CjZzKy9IQ3pTem5POGUvK3Vla2p1ejBqaG9CWmQ1Y1Z1TjJwZlNhT1dDcVRTOFNCZ09hWVA5ZzhkalpocXhhdDkKc2JpRy9xRTluaitGc2tPMldIMkhOWmJZVWVEWXlaK1BrY2JoN2kzMzhHUVlGeWlNUDNoamlwUU5pR3AxV3d1cgpuOVltL3R4aUlpcmMxQ29ScmpFQ0F3RUFBYU1qTUNFd0RnWURWUjBQQVFIL0JBUURBZ0trTUE4R0ExVWRFd0VCCi93UUZNQU1CQWY4d0RRWUpLb1pJaHZjTkFRRUxCUUFEZ2dFQkFJb0ZYcUlQbTFQTUZLVFQzcDJVZHozUXgvUWMKcmNjRWdMc2JzNFkwNDg1TWRxSkFmTkZmZkUxQ0xGK0RkNmF6UEl4cFRLT1NScS91QktHR1BPeGRVaXB1cDFYTwpwRDJRY3BiN3JFcEZvdVZNVjBteGlib3B4QmkzbGlaTVM0cFNuM0V5cjVmQ2JUSmYrUU1UWno1NVN0UmkvQ3FTCk81QlJwV3VaazdPMWY0dGQ5eGhxS0d2R21ta2hKRGxFaFJCbnN4Y3NiQlNtRDhzWHF1Zy9vWDNEQ0lZeCt3TmMKNDFEKzVuTDRSRmV1T0QrRzZpZHlBQnhZaW8wdk9mNFEvUEROT1V5eEt1U3BnZzM2eFU3MHNvaFI3RjMxTFRXcApUVlE5OUk5clpiYkNEVHVUcXlMeW1QbzQyck1MYmlPL1RGZVE3bHhsNlh2ZXZjWTJONU9uS1h0aWxxRT0KLS0tLS1FTkQgQ0VSVElGSUNBVEUtLS0tLQo="
+        },
+        "platformVersion": "eks.1"
+    }
+}

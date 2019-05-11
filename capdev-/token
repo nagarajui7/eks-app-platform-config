@@ -1,0 +1,13 @@
+Name:         eks-admin-token-sjw8l
+Namespace:    kube-system
+Labels:       <none>
+Annotations:  kubernetes.io/service-account.name: eks-admin
+              kubernetes.io/service-account.uid: 49f8d7c2-741c-11e9-be6c-029a106537bc
+
+Type:  kubernetes.io/service-account-token
+
+Data
+====
+ca.crt:     1025 bytes
+namespace:  11 bytes
+token:      eyJhbGciOiJSUzI1NiIsImtpZCI6IiJ9.eyJpc3MiOiJrdWJlcm5ldGVzL3NlcnZpY2VhY2NvdW50Iiwia3ViZXJuZXRlcy5pby9zZXJ2aWNlYWNjb3VudC9uYW1lc3BhY2UiOiJrdWJlLXN5c3RlbSIsImt1YmVybmV0ZXMuaW8vc2VydmljZWFjY291bnQvc2VjcmV0Lm5hbWUiOiJla3MtYWRtaW4tdG9rZW4tc2p3OGwiLCJrdWJlcm5ldGVzLmlvL3NlcnZpY2VhY2NvdW50L3NlcnZpY2UtYWNjb3VudC5uYW1lIjoiZWtzLWFkbWluIiwia3ViZXJuZXRlcy5pby9zZXJ2aWNlYWNjb3VudC9zZXJ2aWNlLWFjY291bnQudWlkIjoiNDlmOGQ3YzItNzQxYy0xMWU5LWJlNmMtMDI5YTEwNjUzN2JjIiwic3ViIjoic3lzdGVtOnNlcnZpY2VhY2NvdW50Omt1YmUtc3lzdGVtOmVrcy1hZG1pbiJ9.BGFFyZBaJ5N6COohp1HvCLyG_LG_J1S1ot4uPQ-ymS8BJaTcNbIjDhbTkuhJTjtcAcTvYyE0sMnnb_OmxnJnW3GSyH7mQWjT6e_a7UKbXMPoX00vi_uOiOHDjqmUXebjJfnBIHBDB0H9Vdg4sePd0WgCA9lXD6cDShOHuqIH6hr81ZSNmRLpDbViC9jNql9GYn3F7htXTv2XY2h3rB_r8mOOH1QCPt5Nw9pZr3Y0cyfpFrioMVf8SyfmH0Lsh6QfwQ1w7xfkFtYIwcLYFWSx6N4U7ErnwbjfCfkodRBkeL17bR-A2MZdUEPtXNRa2N46glc357vL5eZH-fHJaCYU5g
