@@ -1,1 +1,12 @@
-
+#Repo_Name-----Mention your repository name
+#Language-----select java/nodejs
+#Type------select tomcat/nodejs
+#Module-----Only applicable for multi module java project
+#War_file_name-----Only for java based projec
+#Tenant-----Specify the Tenant name
+Repo_Name:cap
+Language:nodejs
+Type:nodejs
+Module:
+War_file_name:
+Tenant:default
