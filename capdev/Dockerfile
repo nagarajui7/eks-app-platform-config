@@ -1,3 +1,14 @@
-FROM tomcat:8.0.20-jre8
+FROM node:8
 
-COPY pwd/cap/target/capdemo.war /usr/local/tomcat/webapps/
+# Create app directory
+WORKDIR /usr/src/app
+
+COPY capdev/package*.json ./
+
+RUN npm install -g
+
+# Bundle app source
+COPY capdev/* .
+
+EXPOSE 8080
+CMD [ "npm", "start" ]

@@ -1,18 +1,18 @@
 apiVersion: extensions/v1beta1
 kind: Deployment
 metadata:
-  name: app_tenant_deploy_cap
+  name: app_tenant_deploy_capdev
   namespace: default
 spec:
   replicas: 1
   template:
     metadata:
       labels:
-        name: cap
+        name: capdev
     spec:
       containers:
-      - name: app_tenant_pod_cap
-        image: cap:latest
+      - name: app_tenant_pod_capdev
+        image: capdev:latest
         ports:
         - containerPort: 8080
 
@@ -20,9 +20,9 @@ spec:
 apiVersion: v1
 kind: Service
 metadata:
-  name: app_tenant_svc_cap
+  name: app_tenant_svc_capdev
   labels:
-    name: app_tenant_cap
+    name: app_tenant_capdev
   namespace: default
 spec:
   type: NodePort
@@ -31,4 +31,4 @@ spec:
     targetPort: 8080
     nodePort: 30001
   selector:
-    name: cap
+    name: capdev
