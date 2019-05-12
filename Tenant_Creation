@@ -1,3 +1,3 @@
-Tenant_Name:college-cap
-Number_of_Micro_services:6
-Replicas:6
+Tenant_Name:college
+Number_of_Micro_services:5
+Replicas:4
