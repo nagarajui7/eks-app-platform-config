@@ -3,8 +3,8 @@
 #Type------select tomcat/nodejs
 #War_file_name-----Only for java based projec
 #Tenant-----Specify the Tenant name
-Repo_Name:testcap
-Language:java
-Type:tomcat
-War_file_name:cap-war
-Tenant:kube-system
+Repo_Name:cap
+Language:nodejs
+Type:nodejs
+War_file_name:node
+Tenant:kube-public
