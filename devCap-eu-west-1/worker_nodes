@@ -1,2 +1,4 @@
-NAME                                           STATUS   ROLES    AGE   VERSION
-ip-192-168-211-58.eu-west-1.compute.internal   Ready    <none>   39s   v1.12.7
+NAME                                            STATUS   ROLES    AGE   VERSION
+ip-192-168-173-202.eu-west-1.compute.internal   Ready    <none>   41s   v1.12.7
+ip-192-168-210-1.eu-west-1.compute.internal     Ready    <none>   44s   v1.12.7
+ip-192-168-92-71.eu-west-1.compute.internal     Ready    <none>   42s   v1.12.7
