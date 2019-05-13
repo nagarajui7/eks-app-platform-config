@@ -1,5 +1,5 @@
-Tenant_Name:bh
-Number_of_Micro_services:4
-Replicas:5
+Tenant_Name:tenant-uservice-a
+Number_of_Micro_services:3
+Avg_Number_Replicas:5
 Cluster_Name:eks-Cap
 Cluster_region:us-east-2
