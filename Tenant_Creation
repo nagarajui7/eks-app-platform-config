@@ -1,4 +1,4 @@
-Tenant_Name:tenant-uservice-a
+Tenant_Name:tenant-uservice
 Number_of_Micro_services:3
 Avg_Number_Replicas:5
 Cluster_name:eks-Cap
